@@ -216,7 +216,7 @@ const Home = () => {
   }, []);
 
  useEffect(() => {
-  const clientKey = import.meta.env.REACT_APP_MIDTRANS_CLIENT_KEY;
+  const clientKey = import.meta.env.VITE_APP_MIDTRANS_CLIENT_KEY;
   
   if (!clientKey) {
     console.error('Midtrans client key not found in environment variables');
