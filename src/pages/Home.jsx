@@ -315,10 +315,10 @@ const Home = () => {
               position: 'sticky',
               top: 0,
               background: 'transparent',
-              backdropFilter: 'blur(10px)',
+              
               zIndex: 10,
               padding: '1.5rem',
-              borderBottom: 'none'
+              
             }}>
               <h2 style={{ margin: 0, fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }}>Registration Form</h2>
               <button
@@ -659,7 +659,7 @@ const Home = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Pendamping (Opsional)</label>
+                  <label>Pendamping (Sesuaikan Guidebook)</label>
                   <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
                     <button
                       type="button"
@@ -722,6 +722,9 @@ const Home = () => {
                       background: 'rgba(255, 255, 255, 0.1)',
                       backdropFilter: 'blur(10px)'
                     }}>
+
+
+                      
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', gap: '0.5rem' }}>
                         <strong style={{ textTransform: 'capitalize', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}>
                           {official.role.replace('_', ' ')}
@@ -735,10 +738,13 @@ const Home = () => {
                             color: 'white',
                             border: 'none',
                             borderRadius: '50%',
-                            width: '24px',
-                            height: '24px',
+                            width: '28px',
+                            height: '28px',
                             cursor: (submitting || paymentPending) ? 'not-allowed' : 'pointer',
-                            fontSize: '18px',
+                            fontSize: '20px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                             flexShrink: 0
                           }}
                         >
@@ -938,57 +944,384 @@ const Home = () => {
       )}
 
       <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
-        @media (max-width: 768px) {
-          .modal-overlay {
-            padding: 0.5rem;
-          }
-          
-          .registration-modal {
-            width: 95% !important;
-            max-height: 95vh !important;
-          }
-          
-          .form-group label {
-            font-size: 0.9rem;
-          }
-          
-          .glass-input {
-            font-size: 0.9rem;
-            padding: 0.6rem;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .modal-header h2 {
-            font-size: 1.25rem;
-          }
-          
-          .close-btn {
-            font-size: 1.75rem;
-          }
-          
-          .team-member-card,
-          .official-card {
-            padding: 0.75rem;
-          }
-        }
-      `}</style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* ⚡ FIX BOX-SIZING - CRITICAL! */
+  .registration-modal *,
+  .registration-modal *::before,
+  .registration-modal *::after {
+    box-sizing: border-box;
+  }
+  
+  /* ⚡ CONTAINER CONSTRAINTS */
+  .registration-modal {
+    width: 95% !important;
+    max-width: 800px !important;
+    max-height: 90vh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  
+  .modal-content {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .registration-form {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* ⚡ FORM GROUP FIX */
+  .form-group {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    overflow: visible;
+  }
+  
+  .form-group label {
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    margin-bottom: 0.5rem;
+    display: block;
+    width: 100%;
+  }
+  
+  /* ⚡ INPUT UNIVERSAL FIX */
+  .glass-input,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(0.85rem, 2.5vw, 1rem) !important;
+    padding: clamp(0.75rem, 2vw, 1.2rem) !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+  
+  /* ⚡ DROPDOWN FIX */
+  .custom-dropdown {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+  
+  .dropdown-select {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    padding: clamp(0.75rem, 2vw, 1.2rem);
+  }
+  
+  /* ⚡ TEAM MEMBER CARDS FIX */
+  .team-member-card,
+  .official-card {
+    width: 100%;
+    max-width: 100%;
+    padding: clamp(0.75rem, 2.5vw, 1.5rem) !important;
+    margin-bottom: clamp(0.75rem, 2vw, 1rem) !important;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  
+  .team-member-card > *,
+  .official-card > * {
+    max-width: 100%;
+  }
+  
+  /* ⚡ BUTTONS FIX */
+  .add-member-btn,
+  .submit-btn,
+  .retry-payment-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(0.85rem, 2.5vw, 1rem) !important;
+    padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.2rem) !important;
+    box-sizing: border-box;
+  }
+  
+  /* ⚡ BUTTON GROUP FIX (Coach, Guru, Official) */
+  .form-group > div[style*="display: flex"] {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+  
+  .form-group > div[style*="display: flex"] button {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(0.75rem, 2vw, 0.9rem) !important;
+    padding: clamp(0.5rem, 2vw, 0.6rem) clamp(0.75rem, 2.5vw, 1rem) !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* ⚡ CHECKBOX CONTAINER FIX */
+  .checkbox-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex !important;
+    gap: 0.5rem !important;
+    align-items: flex-start !important;
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  
+  .checkbox-container label {
+    flex: 1;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem) !important;
+    line-height: 1.4;
+  }
+  
+  /* ⚡ FILE INPUT FIX */
+  input[type="file"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: clamp(0.65rem, 2vw, 1rem) !important;
+    font-size: clamp(0.8rem, 2vw, 1rem) !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
+  }
+  
+  input[type="file"]::file-selector-button {
+    font-size: clamp(0.75rem, 2vw, 0.9rem) !important;
+    padding: 0.4rem 0.75rem !important;
+    margin-right: 0.5rem;
+  }
+  
+  /* ⚡ MODAL OVERLAY */
+  .modal-overlay {
+    padding: clamp(0.5rem, 2vw, 2rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* ⚡ TABLET (768px - 1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .registration-modal {
+      width: 85% !important;
+      max-width: 700px !important;
+    }
+    
+    .modal-content {
+      padding: 1.5rem !important;
+    }
+    
+    .glass-input {
+      font-size: 0.95rem !important;
+      padding: 1rem !important;
+    }
+  }
+  
+  /* ⚡ MOBILE (< 768px) */
+  @media (max-width: 767px) {
+    .modal-overlay {
+      padding: 0.5rem !important;
+      align-items: flex-start;
+      padding-top: 1rem;
+    }
+    
+    .registration-modal {
+      width: 100% !important;
+      max-width: 100% !important;
+      max-height: calc(100vh - 2rem) !important;
+      margin: 0 !important;
+    }
+    
+    .modal-header {
+      padding: 1rem !important;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .modal-header h2 {
+      font-size: 1.1rem !important;
+      padding-right: 2.5rem;
+    }
+    
+    .close-btn {
+      font-size: 1.5rem !important;
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px;
+      flex-shrink: 0;
+    }
+    
+    .modal-content {
+      padding: 1rem !important;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    
+    .glass-input,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"],
+    select {
+      font-size: 16px !important;
+      padding: 0.75rem !important;
+    }
+    
+    .team-member-card,
+    .official-card {
+      padding: 0.75rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+    
+    /* ⚡ Remove member button fix */
+    .remove-member-btn {
+      width: 28px !important;
+      height: 28px !important;
+      min-width: 28px;
+      flex-shrink: 0;
+      font-size: 20px !important;
+    }
+    
+    /* ⚡ Button wrapper mobile */
+    .form-group > div[style*="display: flex"] button {
+      font-size: 0.8rem !important;
+      padding: 0.5rem 0.75rem !important;
+      flex: 1 1 calc(33.333% - 0.4rem);
+      min-width: 80px;
+    }
+  }
+  
+  /* ⚡ SMALL MOBILE (< 480px) */
+  @media (max-width: 479px) {
+    .modal-header h2 {
+      font-size: 1rem !important;
+    }
+    
+    .close-btn {
+      font-size: 1.25rem !important;
+      width: 28px !important;
+      height: 28px !important;
+    }
+    
+    .glass-input,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      font-size: 16px !important;
+      padding: 0.65rem !important;
+    }
+    
+    input[type="file"] {
+      font-size: 14px !important;
+      padding: 0.65rem 0.5rem !important;
+    }
+    
+    input[type="file"]::file-selector-button {
+      font-size: 0.7rem !important;
+      padding: 0.35rem 0.6rem !important;
+      margin-right: 0.4rem;
+    }
+    
+    .remove-member-btn {
+      width: 24px !important;
+      height: 24px !important;
+      font-size: 18px !important;
+    }
+    
+    /* ⚡ Stack buttons vertically on very small screens */
+    .form-group > div[style*="display: flex"] {
+      flex-direction: column;
+      gap: 0.5rem !important;
+    }
+    
+    .form-group > div[style*="display: flex"] button {
+      width: 100% !important;
+      flex: 1 1 100%;
+    }
+  }
+  
+  /* ⚡ VERY SMALL MOBILE (< 375px) */
+  @media (max-width: 374px) {
+    .modal-overlay {
+      padding: 0.25rem !important;
+    }
+    
+    .registration-modal {
+      width: 100% !important;
+    }
+    
+    .modal-header {
+      padding: 0.75rem !important;
+    }
+    
+    .modal-content {
+      padding: 0.75rem !important;
+    }
+    
+    .glass-input,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      font-size: 16px !important;
+      padding: 0.6rem !important;
+    }
+  }
+  
+  /* ⚡ SCROLLBAR */
+  .registration-modal::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .registration-modal::-webkit-scrollbar-track {
+    background: rgba(222, 184, 135, 0.2);
+    border-radius: 4px;
+  }
+  
+  .registration-modal::-webkit-scrollbar-thumb {
+    background: rgba(139, 69, 19, 0.5);
+    border-radius: 4px;
+  }
+  
+  .registration-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 69, 19, 0.7);
+  }
+  
+  /* ⚡ SMOOTH SCROLL */
+  .registration-modal {
+    scroll-behavior: smooth;
+  }
+  
+  /* ⚡ PREVENT HORIZONTAL SCROLL */
+  body:has(.modal-overlay) {
+    overflow: hidden;
+  }
+`}</style>
     </>
   );
 }
