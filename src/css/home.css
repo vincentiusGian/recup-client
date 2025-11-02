@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: Xtra;
-  src: url(assets/recup/Greek-Freak.otf);
+  src: url(/client/public/assets/recup/Greek-Freak.otf);
   font-weight: normal;
   font-style: normal;
   font-display: swap;

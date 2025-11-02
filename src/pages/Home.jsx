@@ -3,7 +3,7 @@ import { getCompetitions } from '../api/competitions';
 import axiosInstance from '../api/axiosInstance';
 import '../css/home.css';
 import Swal from 'sweetalert2';
-
+import overlayImage from '/assets/recup/overlay.webp';
 
 const Home = () => {
   const [compData, setCompData] = useState([]);
@@ -239,7 +239,7 @@ const Home = () => {
         <section className="landing-ael">
           <div className="sunray-overlay">
             <img
-              src="./assets/recup/overlay.webp"
+              src={overlayImage}
               alt="Sunray Overlay"
               loading="lazy"
               decoding="async"
