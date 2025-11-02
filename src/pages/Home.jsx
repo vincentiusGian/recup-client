@@ -215,9 +215,16 @@ const Home = () => {
     return () => { isMounted = false; };
   }, []);
 
-  useEffect(() => {
-    loadMidtransScript("Mid-client-IhCJXEB_N1fqjAR_");
-  }, []);
+ useEffect(() => {
+  const clientKey = process.env.REACT_APP_MIDTRANS_CLIENT_KEY;
+  
+  if (!clientKey) {
+    console.error('Midtrans client key not found in environment variables');
+    return;
+  }
+  
+  loadMidtransScript(clientKey);
+}, []);
 
   return (
     <>
