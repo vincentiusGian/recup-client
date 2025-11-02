@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: Xtra;
-  src: url(/client/public/assets/recup/Greek-Freak.otf);
+  src: url(../../public/assets/recup/Greek-Freak.otf);
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -786,7 +786,7 @@ select.glass-input option {
   
   */
   border-radius: 25px;
-  background: url(assets/recup/regist-bg.png);
+  background: url(../../public/assets/recup/regist-bg.webp);
   background-size: cover;
   background-position: center;
   position: relative;
