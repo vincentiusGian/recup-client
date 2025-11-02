@@ -22,10 +22,7 @@ export const getCompetitions = async () => {
     const response = await axiosInstance.get('/competitions', {
       // ⚡ Set timeout lebih pendek untuk fail fast
       timeout: 10000,
-      // ⚡ Enable compression
-      headers: {
-        'Accept-Encoding': 'gzip, deflate'
-      }
+      
     });
 
     // ⚡ Update cache

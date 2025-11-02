@@ -83,12 +83,24 @@
 }
 
 .sunray-overlay {
-  position: absolute;
-  height: 100%;
-  width: 100vw;
-  transform: translateY(3);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 2 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
 }
 
+.sunray-overlay img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  opacity: 0.4 !important;
+  filter: brightness(1.1) contrast(0.9);
+}
 .recup-container .title-greek-container {
   width: 500px;
   height: 100px;

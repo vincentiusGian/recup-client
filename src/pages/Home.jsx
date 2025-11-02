@@ -315,10 +315,10 @@ const Home = () => {
               position: 'sticky',
               top: 0,
               background: 'transparent',
-              
+
               zIndex: 10,
               padding: '1.5rem',
-              
+
             }}>
               <h2 style={{ margin: 0, fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }}>Registration Form</h2>
               <button
@@ -724,7 +724,7 @@ const Home = () => {
                     }}>
 
 
-                      
+
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', gap: '0.5rem' }}>
                         <strong style={{ textTransform: 'capitalize', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}>
                           {official.role.replace('_', ' ')}
